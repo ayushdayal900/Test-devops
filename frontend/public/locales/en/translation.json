@@ -1,0 +1,67 @@
+{
+  "brand": {
+    "name": "Mahalaxmi",
+    "suffix": "Tailoring",
+    "since": "Since 2004 • 20+ Years of Tradition"
+  },
+  "nav": {
+    "home": "Home",
+    "designs": "Designs",
+    "gallery": "Gallery",
+    "about": "About",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "login": "Login",
+    "bookAppointment": "Book Appointment"
+  },
+  "hero": {
+    "title": "Grace softly dressed, Patal at its best.",
+    "description": "Specializing in custom Paithani stitching, Rajlaxmi designs, and royal Mastani drapes. Experience the art of perfect fitting with a touch of elegance.",
+    "ctaExplore": "Explore Designs",
+    "ctaCustom": "Custom Stitchings",
+    "ctaCustomMarathi": "(पातळ शिवा)",
+    "designLabel": "The Master Tailor - ",
+    "name": "Jayashri Dayal"
+  },
+  "home": {
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Your journey to the perfect outfit in 5 simple steps."
+    }
+  },
+  "features": {
+    "title": "Why Choose Mahalaxmi Tailoring?",
+    "subtitle": "We combine decades of tradition with modern precision to create garments that aren't just stitched, but crafted for you.",
+    "fit": {
+      "title": "Perfect Fit Guarantee",
+      "desc": "We don't just stitch; we sculpt. Our proprietary measurement process ensures a flawless fit that feels like a second skin."
+    },
+    "authentic": {
+      "title": "Authentic Designs",
+      "desc": "From classic Rajlaxmi to modern Mastani, we allow you to explore a heritage of draping styles tailored to your preference."
+    },
+    "craftsmanship": {
+      "title": "Premium Craftsmanship",
+      "desc": "20+ years of expertise using high-quality threads, reinforced linings, and traditional finishing techniques."
+    }
+  },
+  "footer": {
+    "description": "Crafting elegance since 1995. We specialize in traditional Maharashtrian stitching patterns with a modern touch.",
+    "headers": {
+      "quickLinks": "Quick Links",
+      "customerCare": "Customer Care",
+      "visitUs": "Visit Us"
+    },
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "designs": "Designs",
+      "gallery": "Gallery",
+      "faq": "FAQ & Fitting Guide",
+      "contact": "Contact Us",
+      "account": "My Account",
+      "admin": "Admin"
+    },
+    "copyright": "© {{year}} Mahalaxmi Tailoring Boutique. All rights reserved."
+  }
+}

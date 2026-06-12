@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Google Fonts */
+/* Playfair Display (Headings), Inter (Body), Mukta (Marathi) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mukta:wght@400;500;700&display=swap');
+
+@theme {
+  /* Brand Colors */
+  --color-brand-maroon: #8B0000;
+  --color-brand-gold: #FFD700;
+  --color-brand-beige: #F5E6D3;
+  --color-brand-charcoal: #2C2C2C;
+  --color-brand-teal: #20B2AA;
+  --color-brand-ivory: #FFFFF0;
+
+  /* Typography */
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-marathi: "Mukta", sans-serif;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-beige);
+    color: var(--color-brand-charcoal);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    color: var(--color-brand-maroon);
+  }
+
+  .font-marathi {
+    font-family: var(--font-marathi);
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  /* Custom Chat Scrollbar */
+  .chat-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background: #8B0000;
+    /* brand-maroon */
+    border-radius: 4px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #a00000;
+  }
+}

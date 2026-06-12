@@ -1,0 +1,99 @@
+---
+- name: Provision Mahalaxmi Backend Server
+  hosts: backend
+  become: true   # Run tasks as sudo
+
+  vars:
+    node_version: "20"
+    app_dir: /home/ubuntu/Mahalaxmi-Tailoring
+    repo_url: https://github.com/ayushdayal900/Mahalaxmi-Tailoring.git
+
+  tasks:
+    # --- System Setup ---
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install essential packages
+      apt:
+        name:
+          - git
+          - curl
+          - nginx
+          - certbot
+          - python3-certbot-nginx
+        state: present
+
+    # --- Node.js ---
+    - name: Add NodeSource repo for Node.js {{ node_version }}
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_{{ node_version }}.x | bash -
+      args:
+        creates: /etc/apt/sources.list.d/nodesource.list
+
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+
+    - name: Install PM2 globally
+      npm:
+        name: pm2
+        global: yes
+        state: present
+
+    # --- Clone / Pull Repository ---
+    - name: Clone or update repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ app_dir }}"
+        version: main
+        force: yes
+      become_user: ubuntu
+
+    - name: Install backend npm dependencies
+      npm:
+        path: "{{ app_dir }}/backend"
+        production: yes
+      become_user: ubuntu
+
+    # --- Nginx ---
+    - name: Deploy Nginx config from template
+      template:
+        src: roles/backend/templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/mahalaxmi
+      notify: Reload Nginx
+
+    - name: Enable Nginx site
+      file:
+        src: /etc/nginx/sites-available/mahalaxmi
+        dest: /etc/nginx/sites-enabled/mahalaxmi
+        state: link
+      notify: Reload Nginx
+
+    - name: Remove default Nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: Reload Nginx
+
+    # --- PM2 ---
+    - name: Start backend with PM2
+      shell: |
+        pm2 start {{ app_dir }}/backend/ecosystem.config.js --env production
+        pm2 save
+      become_user: ubuntu
+      args:
+        chdir: "{{ app_dir }}/backend"
+
+    - name: Set PM2 startup on reboot
+      shell: pm2 startup | tail -1 | bash
+      become_user: ubuntu
+
+  handlers:
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded
